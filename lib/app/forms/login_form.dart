@@ -12,13 +12,16 @@ class LoginForm extends NyFormData {
 
   @override
   fields() => [
-        Field.email("Email",
-            autofocus: true,
-            validate: FormValidator.rule("email"),
-            style: "compact"),
+        Field.email(
+          "Email",
+          autofocus: true,
+          validate: FormValidator.rule("email"),
+          style: "compact",
+        ),
         Field.password(
           "Password",
-          validate: FormValidator.minLength(7),
+          validate:
+              FormValidator.minLength(7, message: "Password is too short"),
           style: "compact",
         ),
       ];

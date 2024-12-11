@@ -25,30 +25,34 @@ class _LoginPageState extends NyPage<LoginPage> {
       ),
       body: SafeArea(
         minimum: EdgeInsets.all(16),
-        child: Container(
-          child: NyForm(
-            form: loginForm,
-            initialData: {
-              "email": "user@demo.com",
-            },
-            footer: Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: Button.primary(
-                text: "Login",
-                skeletonizerLoading: false,
-                showToastError: true,
-                submitForm: (
-                  loginForm,
-                  (data) async {
-                    printInfo(data);
-                    final auth = await AuthApiService().login(
-                      email: data['email'],
-                      password: data['password'],
-                    );
-                    printInfo(auth);
-                    routeTo(HomePage.path);
-                  },
-                ),
+        child: NyForm(
+          header: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text('Login to your account').bodyMedium(),
+          ),
+          mainAxisSpacing: 16.0,
+          crossAxisSpacing: 16.0,
+          form: loginForm,
+          initialData: {
+            "email": "user@demo.com",
+          },
+          footer: Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: Button.primary(
+              text: "Login",
+              skeletonizerLoading: false,
+              showToastError: true,
+              submitForm: (
+                loginForm,
+                (data) async {
+                  printInfo(data);
+                  final auth = await AuthApiService().login(
+                    email: data['email'],
+                    password: data['password'],
+                  );
+                  printInfo(auth);
+                  routeTo(HomePage.path);
+                },
               ),
             ),
           ),
