@@ -9,8 +9,7 @@ void main() async {
   await Nylo.init(
     setup: Boot.nylo,
     setupFinished: Boot.finished,
-
-    // showSplashScreen: true,
+    showSplashScreen: true,
     // Uncomment showSplashScreen to show the splash screen
     // File: lib/resources/widgets/splash_screen.dart
   );
