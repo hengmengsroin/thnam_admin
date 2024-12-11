@@ -18,7 +18,7 @@ class LoginForm extends NyFormData {
             style: "compact"),
         Field.password(
           "Password",
-          validate: FormValidator.password(strength: 1),
+          validate: FormValidator.minLength(7),
           style: "compact",
         ),
       ];

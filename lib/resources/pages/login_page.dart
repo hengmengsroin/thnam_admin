@@ -12,10 +12,9 @@ class LoginPage extends NyStatefulWidget {
 }
 
 class _LoginPageState extends NyPage<LoginPage> {
+  final loginForm = LoginForm();
   @override
   get init => () {};
-
-  final loginForm = LoginForm();
 
   @override
   Widget view(BuildContext context) {
@@ -29,11 +28,15 @@ class _LoginPageState extends NyPage<LoginPage> {
         child: Container(
           child: NyForm(
             form: loginForm,
+            initialData: {
+              "email": "user@demo.com",
+            },
             footer: Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: Button.primary(
                 text: "Login",
                 skeletonizerLoading: false,
+                showToastError: true,
                 submitForm: (
                   loginForm,
                   (data) async {

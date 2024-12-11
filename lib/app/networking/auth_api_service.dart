@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/app/models/auth.dart';
 import '/config/decoders.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
@@ -12,10 +13,15 @@ class AuthApiService extends NyApiService {
   String get baseUrl => getEnv('API_BASE_URL');
 
   /// Example API Request
-  FutureOr<Auth> login(
+  FutureOr<AuthModel> login(
       {required String email, required String password}) async {
     return await network(
-      request: (request) => request.post("/login", data: {
+      handleFailure: (error) {
+        printError(error);
+        return null;
+      },
+      handleSuccess: (response) => AuthModel.fromJson(response.data),
+      request: (request) => request.post("/auth/login", data: {
         "email": email,
         "password": password,
       }),

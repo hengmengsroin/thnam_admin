@@ -23,11 +23,13 @@ final Map<Type, dynamic> modelDecoders = {
 
   // User: (data) => User.fromJson(data),
 
-  List<Auth>: (data) => List.from(data).map((json) => Auth.fromJson(json)).toList(),
+  List<AuthModel>: (data) =>
+      List.from(data).map((json) => AuthModel.fromJson(json)).toList(),
 
-  Auth: (data) => Auth.fromJson(data),
+  AuthModel: (data) => AuthModel.fromJson(data),
 
-  List<Token>: (data) => List.from(data).map((json) => Token.fromJson(json)).toList(),
+  List<Token>: (data) =>
+      List.from(data).map((json) => Token.fromJson(json)).toList(),
 
   Token: (data) => Token.fromJson(data),
 };
