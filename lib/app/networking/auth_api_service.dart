@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import '/config/keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/models/auth.dart';
 import '/config/decoders.dart';
@@ -18,9 +18,13 @@ class AuthApiService extends NyApiService {
     return await network(
       handleFailure: (error) {
         printError(error);
-        return null;
+        throw error.message ?? "An error occurred";
       },
-      handleSuccess: (response) => AuthModel.fromJson(response.data),
+      handleSuccess: (response) {
+        final auth = AuthModel.fromJson(response.data);
+        Backpack.instance.save(Keys.auth, auth.token.accessToken);
+        return auth;
+      },
       request: (request) => request.post("/auth/login", data: {
         "email": email,
         "password": password,
