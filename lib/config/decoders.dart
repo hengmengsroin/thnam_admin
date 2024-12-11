@@ -1,3 +1,6 @@
+import '/app/models/token.dart';
+import '/app/models/auth.dart';
+import '/app/networking/auth_api_service.dart';
 import '/app/controllers/home_controller.dart';
 import '/app/models/user.dart';
 import '/app/networking/api_service.dart';
@@ -19,6 +22,14 @@ final Map<Type, dynamic> modelDecoders = {
   User: (data) => User.fromJson(data),
 
   // User: (data) => User.fromJson(data),
+
+  List<Auth>: (data) => List.from(data).map((json) => Auth.fromJson(json)).toList(),
+
+  Auth: (data) => Auth.fromJson(data),
+
+  List<Token>: (data) => List.from(data).map((json) => Token.fromJson(json)).toList(),
+
+  Token: (data) => Token.fromJson(data),
 };
 
 /* API Decoders
@@ -33,6 +44,8 @@ final Map<Type, dynamic> apiDecoders = {
   ApiService: () => ApiService(),
 
   // ...
+
+  AuthApiService: AuthApiService(),
 };
 
 /* Controller Decoders
